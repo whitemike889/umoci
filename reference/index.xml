@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reference on umoci</title>
+    <link>https://umo.ci/reference/</link>
+    <description>Recent content in Reference on umoci</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://umo.ci/reference/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Roadmap</title>
+      <link>https://umo.ci/reference/roadmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/reference/roadmap/</guid>
+      <description>This document describes an informal roadmap for the future of the umoci project, in both technical and operational aspects. If you feel there is something missing from this document, feel free to contribute.
+Improved API Design One of the main goals of umoci is to act as a &amp;ldquo;defacto&amp;rdquo; implementation of the relevant image-spec interfaces. In particular, the oci/cas and oci/casext packages are perfect examples of the style of interface that would be incredibly reusable.</description>
+    </item>
+    
+    <item>
+      <title>Architecture</title>
+      <link>https://umo.ci/reference/architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/reference/architecture/</guid>
+      <description>umoci is a fairly simple tool, that takes advantage of a couple of tricks in order to allow for modification of OCI images. This architecture document is fairly high-level and will likely change once some more of the roadmap is implemented. If you feel something is missing from this document, feel free to contribute.
+When umoci was first released, I also published a blog post outlying the original architecture (which has remained fairly similar over time).</description>
+    </item>
+    
+    <item>
+      <title>Security Considerations</title>
+      <link>https://umo.ci/reference/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/reference/security/</guid>
+      <description>umoci is entrusted with taking a particular image and expanding it on the filesystem (as well as computing deltas of the expanded filesystem). As a result, umoci must be very careful about filesystem access to avoid vulnerabilities that may impact other components of the system. If you feel something is missing from this document, feel free to contribute.
+If you&amp;rsquo;ve found a security flaw in umoci that comes from a security consideration we haven&amp;rsquo;t considered before, please follow our instructions on how to responsibly disclose a security issue.</description>
+    </item>
+    
+  </channel>
+</rss>

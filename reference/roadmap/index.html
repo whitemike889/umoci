@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.29" />
+    <meta name="description" content="Documentation for umoci -- a tool for modifying OCI images.">
+<meta name="author" content="Aleksa Sarai">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>Roadmap :: umoci</title>
+    
+    
+    <link href="/css/nucleus.css?1507427376" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?1507427376" rel="stylesheet">
+    <link href="/css/hybrid.css?1507427376" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1507427376" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1507427376" rel="stylesheet">
+    <link href="/css/auto-complete.css?1507427376" rel="stylesheet">
+    <link href="/css/theme.css?1507427376" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1507427376" rel="stylesheet">
+    
+      <link href="/css/theme-green.css?1507427376" rel="stylesheet">
+    
+
+    <script src="/js/jquery-2.x.min.js?1507427376"></script>
+    
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{ 
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/reference/roadmap/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/"><strong style='color: white'>umoci</strong></a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fa fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fa fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1507427376"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1507427376"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/umo.ci\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1507427376"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/quick-start/" title="Basics" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/quick-start/">
+          Basics
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/getting-an-image/" title="Getting an Image" class="dd-item ">
+        <a href="/quick-start/getting-an-image/">
+        Getting an Image
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/workflow/" title="Workflow" class="dd-item ">
+        <a href="/quick-start/workflow/">
+        Workflow
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/creating-an-image/" title="Creating an Image" class="dd-item ">
+        <a href="/quick-start/creating-an-image/">
+        Creating an Image
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/garbage-collection/" title="Garbage Collection" class="dd-item ">
+        <a href="/quick-start/garbage-collection/">
+        Garbage Collection
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/rootless/" title="Rootless Containers" class="dd-item ">
+        <a href="/quick-start/rootless/">
+        Rootless Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/reference/" title="Reference" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/reference/">
+          Reference
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/roadmap/" title="Roadmap" class="dd-item active">
+        <a href="/reference/roadmap/">
+        Roadmap
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/architecture/" title="Architecture" class="dd-item ">
+        <a href="/reference/architecture/">
+        Architecture
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/security/" title="Security Considerations" class="dd-item ">
+        <a href="/reference/security/">
+        Security Considerations
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li class="" role=""> 
+                  <a class="padding" href="https://github.com/openSUSE/umoci"><i class='fa fa-git'></i> Source Code</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable sticky-parent">
+              
+              <div class="sticky-spacer">
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/reference/'>Reference</a> > Roadmap
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#improved-api-design">Improved API Design</a></li>
+<li><a href="#arbitrary-tree-structures-interface">Arbitrary Tree Structures Interface</a></li>
+<li><a href="#direct-mtree-from-layer-generation">Direct <code>mtree</code>-from-layer Generation</a></li>
+<li><a href="#bus-factor">Bus Factor</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Roadmap</h1>
+          
+
+        
+
+
+
+
+<p>This document describes an informal roadmap for the future of the umoci
+project, in both technical and operational aspects. If you feel there is
+something missing from this document, feel free to
+<a href="/CONTRIBUTING.md">contribute</a>.</p>
+
+<h3 id="improved-api-design">Improved API Design</h3>
+
+<p>One of the main goals of umoci is to act as a &ldquo;defacto&rdquo; implementation of the
+relevant image-spec interfaces. In particular, the <code>oci/cas</code> and <code>oci/casext</code>
+packages are perfect examples of the style of interface that would be
+incredibly reusable. In addition, the <code>oci/cas/driver</code> model allows for
+different backend implementations to be used as long as they provide the
+<code>oci/cas.Engine</code> interface.</p>
+
+<p>However, at the moment several of the other packages in <code>oci/</code> need some love
+in creating proper re-usable interfaces. There are many useful components in
+<code>oci/layer</code> (for example), but they are all hidden behind the top-level
+entrypoints that are used by <code>umoci unpack</code> and <code>umoci repack</code>. Other <code>oci/</code>
+libraries have similar issues. This is arguably the highest priority item in
+this roadmap, as it is blocking the adoption of our <code>oci/</code> libraries as well as
+making other refactors much harder to do.</p>
+
+<p>Also note that the <code>mutate/</code> package should also be reworked to provide a much
+cleaner interface (as well as providing support for proper nested handling). To
+be quite honest, I&rsquo;m not actually sure if it handles the arbitrary nesting
+feature of <code>1.0.0-rc5</code> and later (and that&rsquo;s an issue we need to resolve).</p>
+
+<h3 id="arbitrary-tree-structures-interface">Arbitrary Tree Structures Interface</h3>
+
+<p>With the upgrade to <code>1.0.0-rc5</code> of the image-spec, it is now possible to have
+arbitrarily nested <code>Index</code> objects. This means that users may wish to create
+arbitrary tree structures, as well as interact with such structures. Noting
+that ultimately a user will just want to interact with a <code>Manifest</code> (at the end
+of the day), there are several things that need to be improved in the interface
+design.</p>
+
+<ul>
+<li><p>When querying an image to get a <code>Manifest</code>, we need to have a &ldquo;resolution&rdquo;
+interface (which must also be operated in a non-interactive way) that allows
+for increasing the specificity when describing what manifest we are
+interested in. After applying <code>org.opencontainers.image.ref.name</code> and
+platform filters, we have to provide additional filtering and referencing
+support. Unfortunately it currently is not very clear how this is meant to
+work with an arbitrary image, or if it is expected the referencing will
+always be contextual for a particular image. In addition, there is no part of
+the spec that actually describes the algorithm for such referencing.</p></li>
+
+<li><p>When replacing a <code>Manifest</code>, we just need to replace that manifest and all of
+the objects along the resolution path. Unfortunately, the last part of that
+requirement is quite complicated to deal with now that dereferencing has been
+punted to us (especially when it comes to the concept of creating a new tag
+for the modified object &ndash; should we therefore re-create the entire tree of
+the original &ldquo;reference&rdquo; and work from there?). Ultimately I feel it may be
+required to store the <code>Manifest</code> descriptor as well as the highest-level
+(from the <code>index.json</code>) descriptor so that umoci knows where to re-create
+the structure from.</p></li>
+
+<li><p>When creating a new <code>Manifest</code> in an image, we need to be able to handle any
+arbitrary tree structure. Ultimately I think the only proper way of handling
+this will be to require the user to provide a specification-style
+description. I have toyed with the idea of automatically restructuring images
+as necessary (something that would be required if you wanted to avoid the
+creation of duplicate tags in the top-level image &ndash; something that I really
+would like to make sure happens) but it&rsquo;s not clear if users will always want
+us to be maximally clever. Maybe we should provide that and in addition
+provide the specification-style interface for power users (then we have to
+figure out what happens if the two schemes clash or if the specification
+invalidates our own preferences).</p></li>
+</ul>
+
+<p>I&rsquo;m really hoping the above issues may be solvable through some sort of fancy
+algorithm (especially when it comes to resolving conflicts). Further research
+is required in this area.</p>
+
+<p>An additional point to the above is that the current <code>--image</code> interface is
+quite ugly (mainly because I copied Docker&rsquo;s referencing interface). We really
+should dispense with this and go straight to <a href="https://tools.ietf.org/html/rfc3986">proper URI semantics</a>
+with <code>#partial</code> tags being used to indicate <code>org.opencontainers.image.ref.name</code>.
+In addition, I really would like <code>--layout</code> to no longer be necessary. Maybe if
+we made <code>#partial</code> tags required this would allow us to combine the two flags,
+though it would break the ability to have a &ldquo;default&rdquo; tag.</p>
+
+<h3 id="direct-mtree-from-layer-generation">Direct <code>mtree</code>-from-layer Generation</h3>
+
+<p>Currently umoci generates its <code>mtree(8)</code> manifest from the real filesystem
+after the entire bundle has been extracted. This works well enough in practice
+(and actually guarantees us that a <code>repack</code> will contain an empty archive if we
+just did an <code>unpack</code> and nothing else). However, it has several issues.</p>
+
+<ul>
+<li><p>With <code>--rootless</code> we do several tricks to make <code>umoci unpack</code> work as an
+unprivileged user. Many of the tricks don&rsquo;t change how things are extracted
+(such as the whole <code>pkg/unpriv</code> trick), but there are several cases where we
+will intentionally incorrectly extract objects to avoid privilege errors.
+Examples of this include <code>security.capabilities</code> xattrs (which are currently
+not user namespace safe). In order for a from-layer system to work, we would
+need to modify the generated <code>mtree(8)</code> manifest so that it matches the
+on-disk state that we expect given what tricks we know we will employ.</p></li>
+
+<li><p>In addition, binding the <code>mtree(8)</code> tricks to the layer representation will
+mean that any future improvements to the OCI image-spec (such as removing the
+need for linear archives) will result in far more complicated changes to
+umoci. However, if the generator is designed in an extensible fashion this
+should not be a huge deal.</p></li>
+</ul>
+
+<p>Vincent Batts (the author of <code>gomtree</code>) has expressed interest in this sort of
+functionality, but I&rsquo;m not entirely convinced that it will work as well as
+expected (especially given the enormous amount of special casing in <code>go-mtree</code>
+that already exists in order to implement <code>tar</code> archive support).</p>
+
+<h3 id="bus-factor">Bus Factor</h3>
+
+<p>At the moment this project was effectively entirely written and maintained by
+one person. This is obviously an unsustainable development model, and also
+raises several other issues. In addition, currently there is no public mailing
+list for the development of umoci (nor is there a security mailing list)
+which makes it difficult to on-board new maintainers or significant
+contributors.</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+        
+            <a class="nav nav-prev" href="/reference/" title="Reference"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/reference/architecture/" title="Architecture" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1507427376"></script>
+    <script src="/js/perfect-scrollbar.min.js?1507427376"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1507427376"></script>
+    <script src="/js/jquery.sticky-kit.min.js?1507427376"></script>
+    <script src="/js/featherlight.min.js?1507427376"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1507427376"></script>
+    <script src="/js/highlight.pack.js?1507427376"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom.71422.js?1507427376"></script>
+    <script src="/js/learn.js?1507427376"></script>
+    <script src="/js/hugo-learn.js?1507427376"></script>
+
+    <link href="/mermaid/mermaid.css?1507427376" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1507427376"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Basics on umoci</title>
+    <link>https://umo.ci/quick-start/</link>
+    <description>Recent content in Basics on umoci</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://umo.ci/quick-start/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting an Image</title>
+      <link>https://umo.ci/quick-start/getting-an-image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/quick-start/getting-an-image/</guid>
+      <description>For most users, before you can do anything with umoci, you have to first have an OCI image. At the time of writing, there is no standard way of getting an OCI image. Distribution is still an open topic in the specification, and there are very few implementations of a distribution extension to the OCI specification. I&amp;rsquo;ve personally worked on one but there is still a lot of work to go before you can skip this step and get OCI images without the need to convert from other things.</description>
+    </item>
+    
+    <item>
+      <title>Workflow</title>
+      <link>https://umo.ci/quick-start/workflow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/quick-start/workflow/</guid>
+      <description>umoci&amp;rsquo;s workflow is based around an unpack-repack cycle, with some separate configuration steps. Most users are going to be primarily using the unpack and repack subcommands for most uses of umoci.
+Unpack Each image consists of a set of layers and a configuration that describes how the image should be used. umoci unpack allows you to take an image and extract its root filesystem and configuration into an runtime bundle.</description>
+    </item>
+    
+    <item>
+      <title>Creating an Image</title>
+      <link>https://umo.ci/quick-start/creating-an-image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/quick-start/creating-an-image/</guid>
+      <description>Creating a new image with umoci is fairly simple, and effectively involves creating an image &amp;ldquo;husk&amp;rdquo; which you can then operate on as though it was a normal image. New images contain no layers, and have a dummy configuration that should be replaced by a user.
+If you wish to create a new image layout (which contains nothing except the bare minimum to specify that the image is an OCI image), you can do so umoci init.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection</title>
+      <link>https://umo.ci/quick-start/garbage-collection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/quick-start/garbage-collection/</guid>
+      <description>Every umoci operation that modifes an image will not delete any now-unused blobs in the image (so as to ensure that any other operations that assume those blobs are present will not error out). However, this will result in a large number of useless blobs remaining in the image after operating on an image for a long enough period of time. umoci gc will garbage collect all blobs that are not reachable from any known image tag.</description>
+    </item>
+    
+    <item>
+      <title>Rootless Containers</title>
+      <link>https://umo.ci/quick-start/rootless/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/quick-start/rootless/</guid>
+      <description>umoci has first class support for rootless containers, and in particular it supports rootless unpacking. This means that an unprivileged user can unpack and repack and image (which is not traditionally possible for most images), as well as generate a runtime configuration that can be used by runc to start a rootless container.
+% id -u 1000 % umoci unpack --rootless --image opensuse:42.2 bundle • restoreMetadata: ignoring EPERM on setxattr: security.</description>
+    </item>
+    
+  </channel>
+</rss>

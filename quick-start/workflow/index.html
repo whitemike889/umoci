@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="generator" content="Hugo 0.29" />
+    <meta name="description" content="Documentation for umoci -- a tool for modifying OCI images.">
+<meta name="author" content="Aleksa Sarai">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>Workflow :: umoci</title>
+    
+    
+    <link href="/css/nucleus.css?1507427376" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?1507427376" rel="stylesheet">
+    <link href="/css/hybrid.css?1507427376" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1507427376" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1507427376" rel="stylesheet">
+    <link href="/css/auto-complete.css?1507427376" rel="stylesheet">
+    <link href="/css/theme.css?1507427376" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1507427376" rel="stylesheet">
+    
+      <link href="/css/theme-green.css?1507427376" rel="stylesheet">
+    
+
+    <script src="/js/jquery-2.x.min.js?1507427376"></script>
+    
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{ 
+          display:none !important;
+      }
+      
+        :not(pre) > code + span.copy-to-clipboard {
+            display: none;
+        }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/quick-start/workflow/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/"><strong style='color: white'>umoci</strong></a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fa fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fa fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1507427376"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1507427376"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/umo.ci\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1507427376"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/quick-start/" title="Basics" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/quick-start/">
+          Basics
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/getting-an-image/" title="Getting an Image" class="dd-item ">
+        <a href="/quick-start/getting-an-image/">
+        Getting an Image
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/workflow/" title="Workflow" class="dd-item active">
+        <a href="/quick-start/workflow/">
+        Workflow
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/creating-an-image/" title="Creating an Image" class="dd-item ">
+        <a href="/quick-start/creating-an-image/">
+        Creating an Image
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/garbage-collection/" title="Garbage Collection" class="dd-item ">
+        <a href="/quick-start/garbage-collection/">
+        Garbage Collection
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/quick-start/rootless/" title="Rootless Containers" class="dd-item ">
+        <a href="/quick-start/rootless/">
+        Rootless Containers
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/reference/" title="Reference" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/reference/">
+          Reference
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/roadmap/" title="Roadmap" class="dd-item ">
+        <a href="/reference/roadmap/">
+        Roadmap
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/architecture/" title="Architecture" class="dd-item ">
+        <a href="/reference/architecture/">
+        Architecture
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/reference/security/" title="Security Considerations" class="dd-item ">
+        <a href="/reference/security/">
+        Security Considerations
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li class="" role=""> 
+                  <a class="padding" href="https://github.com/openSUSE/umoci"><i class='fa fa-git'></i> Source Code</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable sticky-parent">
+              
+              <div class="sticky-spacer">
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > <a href='/quick-start/'>Basics</a> > Workflow
+          
+         
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#unpack">Unpack</a></li>
+<li><a href="#repack">Repack</a></li>
+<li><a href="#configuration">Configuration</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>Workflow</h1>
+          
+
+        
+
+
+
+
+<p>umoci&rsquo;s workflow is based around an unpack-repack cycle, with some separate
+configuration steps. Most users are going to be primarily using the unpack and
+repack subcommands for most uses of umoci.</p>
+
+<h3 id="unpack">Unpack</h3>
+
+<p>Each image consists of a set of layers and a configuration that describes how
+the image should be used. <code>umoci unpack</code> allows you to take an image and
+extract its root filesystem and configuration into an <a href="https://github.com/opencontainers/runtime-spec">runtime
+bundle</a>. This bundle can be used by an OCI compliant container
+runtime to spawn a container, but also can be used directly by non-containers
+(as it is just a directory).</p>
+
+<pre><code class="language-text">% sudo umoci unpack --image opensuse:42.2 bundle
+% ls -l bundle
+total 720
+-rw-r--r-- 1 root root   3247 Jul  3 17:58 config.json
+drwxr-xr-x 1 root root    128 Jan  1  1970 rootfs
+-rw-r--r-- 1 root root 725320 Jul  3 17:58 sha256_8eac95fae2d9d0144607ffde0248b2eb46556318dcce7a9e4cc92edcd2100b67.mtree
+-rw-r--r-- 1 root root    270 Jul  3 17:58 umoci.json
+% cat bundle/rootfs/etc/os-release
+NAME=&quot;openSUSE Leap&quot;
+VERSION=&quot;42.2&quot;
+ID=opensuse
+ID_LIKE=&quot;suse&quot;
+VERSION_ID=&quot;42.2&quot;
+PRETTY_NAME=&quot;openSUSE Leap 42.2&quot;
+ANSI_COLOR=&quot;0;32&quot;
+CPE_NAME=&quot;cpe:/o:opensuse:leap:42.2&quot;
+BUG_REPORT_URL=&quot;https://bugs.opensuse.org&quot;
+HOME_URL=&quot;https://www.opensuse.org/&quot;
+</code></pre>
+
+<p>You can spawn new containers with <a href="https://github.com/opencontainers/runc">runc</a>. If you make any changes to
+the root filesystem, you can create a new delta layer and add it to the image
+by <a href="#repack">repacking it</a>.</p>
+
+<pre><code class="language-text">% sudo runc run -b bundle ctr-name
+sh-4.3# grep NAME /etc/os-release
+NAME=&quot;openSUSE Leap&quot;
+sh-4.3# uname -n
+mrsdalloway
+</code></pre>
+
+<h3 id="repack">Repack</h3>
+
+<p>After making some changes to the root filesystem of your extracted image, you
+may want to create a new delta layer from the changes. Note that the way you
+modified the image does not matter, you can create a container using the
+extracted root filesystem or just modify it directly.</p>
+
+<p><code>umoci repack</code> will create a derived image based on the image originally
+extracted to create the runtime bundle. Even if the original image
+has been &ldquo;modified&rdquo;, <code>umoci repack</code> will still use the original. Note that in
+this invocation, <code>--image</code> refers to the new tag that will be used to reference
+the modified image (which may be the same tag used to extract the original
+image). <code>umoci repack</code> does not work across different images &ndash; both the source
+and destination must be in the same image (and the original blobs must not have
+been garbage collected).</p>
+
+<pre><code class="language-text">% echo &quot;some change&quot; &gt; bundle/rootfs/my_change
+% sudo umoci repack --image opensuse:new bundle
+% sudo umoci unpack --image opensuse:new bundle2
+% cat bundle2/rootfs/my_change
+some change
+</code></pre>
+
+<p>Note that any changes to <code>bundle/config.json</code> <strong>will not</strong> change the image&rsquo;s
+configuration. You can change an image&rsquo;s configuration using <a href="#configuration">the dedicated
+subcommand</a>.</p>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>In order to change the configuration of an image, <code>umoci config</code> can be used. A
+full description of what each configuration option means is beyond the scope of
+this document, but you can <a href="https://github.com/opencontainers/image-spec/blob/v1.0.0-rc4/config.md">read the spec for more
+information</a>.</p>
+
+<p>By default, <code>umoci config</code> will override the tag given with <code>--image</code> but you
+can force the change to create a new tag (leaving the original unchanged) with
+<code>--tag</code>.</p>
+
+<pre><code class="language-text">% umoci config --author=&quot;Aleksa Sarai &lt;asarai@suse.de&gt;&quot; --image opensuse
+</code></pre>
+
+<p>Note that both <code>umoci config</code> and <code>umoci repack</code> include entries in the history
+of the image. You can change what the history entry contains for a particular
+operation by using the <code>--history.</code> set of flags (for both <code>umoci repack</code> and
+<code>umoci config</code>).</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+        
+            <a class="nav nav-prev" href="/quick-start/getting-an-image/" title="Getting an Image"> <i class="fa fa-chevron-left"></i></a>
+        
+        
+            <a class="nav nav-next" href="/quick-start/creating-an-image/" title="Creating an Image" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1507427376"></script>
+    <script src="/js/perfect-scrollbar.min.js?1507427376"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1507427376"></script>
+    <script src="/js/jquery.sticky-kit.min.js?1507427376"></script>
+    <script src="/js/featherlight.min.js?1507427376"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1507427376"></script>
+    <script src="/js/highlight.pack.js?1507427376"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom.71422.js?1507427376"></script>
+    <script src="/js/learn.js?1507427376"></script>
+    <script src="/js/hugo-learn.js?1507427376"></script>
+
+    <link href="/mermaid/mermaid.css?1507427376" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1507427376"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+
