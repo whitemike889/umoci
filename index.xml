@@ -88,5 +88,26 @@ If you wish to create a new image layout (which contains nothing except the bare
 % id -u 1000 % umoci unpack --rootless --image opensuse:42.2 bundle • restoreMetadata: ignoring EPERM on setxattr: security.</description>
     </item>
     
+    <item>
+      <title>Changelog</title>
+      <link>https://umo.ci/changelog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/changelog/</guid>
+      <description>All notable changes to this project will be documented in this file.
+The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
+Unreleased Fixed  Fix a bug in our &amp;ldquo;parent directory restore&amp;rdquo; code, which is responsible for ensuring that the mtime and other similar properties of a directory are not modified by extraction inside said directory. The bug would manifest as xattrs not being restored properly in certain edge-cases (which we incidentally hit in a test-case).</description>
+    </item>
+    
+    <item>
+      <title>Contributing Guidelines</title>
+      <link>https://umo.ci/contributing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/contributing/</guid>
+      <description>If you&amp;rsquo;re reading this, you&amp;rsquo;re likely interested in contributing to this project. That&amp;rsquo;s great! The intention of this document is to describe the basic requirements and rules-of-thumb for contributions.
+Security Issues If you are reporting a security issue, do not create an issue or file a pull request on GitHub. Instead, disclose the issue responsibly by sending an email to asarai@suse.de. If you feel it is necessary you may also encrypt your email with Pretty Good Privacy (PGP) using the PGP key 5F36 C6C6 1B54 6012 4A75 F5A6 9E18 AA26 7DDB 8DB4.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
 
-    <title>Basics :: umoci</title>
+    <title>Contributing Guidelines :: umoci</title>
     
     
     <link href="/css/nucleus.css?1507430383" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/quick-start/">
+  <body class="" data-url="/contributing/">
     <nav id="sidebar" class="">
 
 
@@ -80,8 +80,8 @@
   
     
     <li data-nav-id="/quick-start/" title="Basics" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/quick-start/">
@@ -333,30 +333,45 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
                   <span class="links">
                     
           
           
-            
-            
-          
-          
-            <a href='/'>Home</a> > Basics
-          
-         
+            Contributing Guidelines
           
            
                   </span>
                 </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#security-issues">Security Issues</a></li>
+<li><a href="#issues">Issues</a></li>
+<li><a href="#submitting-changes">Submitting Changes</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
                 
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>Contributing Guidelines</h1>
           
 
         
@@ -364,18 +379,147 @@
 
 
 
-<h1 id="quick-start">Quick Start</h1>
+<p>If you&rsquo;re reading this, you&rsquo;re likely interested in contributing to this
+project. That&rsquo;s great! The intention of this document is to describe the basic
+requirements and rules-of-thumb for contributions.</p>
 
-<p>An entry-level guide to using umoci, in conjunction with several supplementary
-tools that are recommended for most users.</p>
+<h3 id="security-issues">Security Issues</h3>
+
+<p>If you are reporting a security issue, do not create an issue or file a pull
+request on GitHub. Instead, disclose the issue responsibly by sending an email
+to <a href="mailto:asarai@suse.de">asarai@suse.de</a>. If you feel it is necessary you may also encrypt
+your email with <a href="https://en.wikipedia.org/wiki/Pretty_Good_Privacy">Pretty Good Privacy (PGP)</a> using the PGP key <a href="http://pgp.mit.edu/pks/lookup?op=vindex&amp;search=0x9E18AA267DDB8DB4"><code>5F36 C6C6
+1B54 6012 4A75 F5A6 9E18 AA26 7DDB 8DB4</code></a>. <em>In future, the above email
+will be replaced with a mailing list as part of our ongoing effort to reduce
+the bus factor of this project.</em></p>
+
+<h3 id="issues">Issues</h3>
+
+<p>If you have found a bug in this project or have a question, first make sure
+that the issue you are facing has not already been reported by another user. If
+the issue you are facing has already been reported and you have more
+information to provide, feel free to add a follow-up comment (but avoid adding
+&ldquo;me too&rdquo; style comments as it distracts from discussion). If you couldn&rsquo;t find
+an existing report for your issue, feel free to <a href="https://github.com/openSUSE/umoci/issues/new">open a new issue</a>.
+If you do not wish to use proprietary software to submit an issue, you may send
+an email to <a href="mailto:asarai@suse.de">asarai@suse.de</a> and I will submit an issue on your behalf.</p>
+
+<p>When reporting an issue, please provide the following information (to the best
+of your ability) so we can debug your issue far more easily:</p>
+
+<ul>
+<li><p>The version of this project you are using. If you are not using the latest
+version of this project, please try to reproduce your issue on the latest
+version.</p></li>
+
+<li><p>A (short) description of what you are trying to accomplish so as to avoid the
+<a href="http://xyproblem.info/">XY problem</a>.</p></li>
+
+<li><p>A minimal example of the bug with a contrast between what you expect to
+happen versus what actually happened.</p></li>
+</ul>
+
+<h3 id="submitting-changes">Submitting Changes</h3>
+
+<p>In order to submit a change, you may [create a pull request][pr-new].  If you
+do not wish to use proprietary software to submit an pull request, you may send
+an email to <a href="mailto:asarai@suse.de">asarai@suse.de</a> and I will submit a pull request on your
+behalf.</p>
+
+<p>All changes should be based off the latest commit of the master branch of this
+project. In order for a change to be merged into this project, it must fulfil
+all of the following requirements (note that many of these only apply for major
+changes):</p>
+
+<ul>
+<li><p>All changes must pass the automated testing and continuous integration. This
+means they must build successfully without errors, must not produce errors
+from static analysis and must not break existing functionality. You can run
+all of these tests on your local machine if you wish by reading through
+<code>.travis.yml</code> and running the listed commands.</p></li>
+
+<li><p>All changes must be formatted using the Go style conventions, which ensures
+that code remains consistent. You can automatically format your code in any
+given <code>file.go</code> using <code>go fmt -s -w file.go</code>.</p></li>
+
+<li><p>Any significant changes (such as those that implement a feature or fix a bug)
+must include an entry in the top-level <a href="/CHANGELOG"><code>CHANGELOG.md</code></a> (see the
+file for more details) that describes the change and links to the pull
+request that implemented it (as well as issues that are being resolved).</p></li>
+
+<li><p>Any feature change or bug fix should include one or more corresponding test
+cases to ensure that the code is operating as intended. Significant features
+warrant the addition of significant numbers of both integration and unit
+tests.</p></li>
+
+<li><p>Any feature change should include a corresponding change to the project
+documentation describing the feature and how it should be used.</p></li>
+</ul>
+
+<p>If you miss any of the above things, don&rsquo;t worry we&rsquo;ll remind you and provide
+help if you need any. In addition to the above requirements, your code will be
+reviewed by the maintainer(s) of this project, using the looks-good-to-me
+system (LGTM). All patches must have the approval of at least two maintainers
+that did not author a change before they are merged (the only exception to this
+is related to the approval of security patches &ndash; which must be approved in
+private instead &ndash; and cases where there are not enough maintainers to fulfil
+this requirement).</p>
+
+<p>Each commit should be self-contained and minimal (and should build and pass the
+tests individually), and commit messages should follow the Linux kernel style
+of commit messages. For more information see <a href="https://www.kernel.org/doc/Documentation/process/submitting-patches.rst">&sect; 2 and 3 of
+<code>submitting-patches.rst</code> from the Linux kernel source</a>.</p>
+
+<p>In addition, all commits must include a <code>Signed-off-by:</code> line in their
+description. This indicates that you certify <a href="https://developercertificate.org/">the following statement, known as
+the Developer Certificate of Origin</a>). You can automatically add this line
+to your commits by using <code>git commit -s --amend</code>.</p>
+
+<pre><code>Developer Certificate of Origin
+Version 1.1
+
+Copyright (C) 2004, 2006 The Linux Foundation and its contributors.
+1 Letterman Drive
+Suite D4700
+San Francisco, CA, 94129
+
+Everyone is permitted to copy and distribute verbatim copies of this
+license document, but changing it is not allowed.
+
+
+Developer's Certificate of Origin 1.1
+
+By making a contribution to this project, I certify that:
+
+(a) The contribution was created in whole or in part by me and I
+    have the right to submit it under the open source license
+    indicated in the file; or
+
+(b) The contribution is based upon previous work that, to the best
+    of my knowledge, is covered under an appropriate open source
+    license and I have the right under that license to submit that
+    work with modifications, whether created in whole or in part
+    by me, under the same open source license (unless I am
+    permitted to submit under a different license), as indicated
+    in the file; or
+
+(c) The contribution was provided directly to me by some other
+    person who certified (a), (b) or (c) and I have not modified
+    it.
+
+(d) I understand and agree that this project and the contribution
+    are public and that a record of the contribution (including all
+    personal information I submit with it, including my sign-off) is
+    maintained indefinitely and may be redistributed consistent with
+    this project or the open source license(s) involved.
+</code></pre>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
       </div>
@@ -405,20 +549,6 @@ tools that are recommended for most users.</p>
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -429,9 +559,6 @@ tools that are recommended for most users.</p>
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -497,6 +624,22 @@ tools that are recommended for most users.</p>
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -571,10 +714,8 @@ tools that are recommended for most users.</p>
 
 
         
-            <a class="nav nav-prev" href="/" title="Home"> <i class="fa fa-chevron-left"></i></a>
         
-        
-            <a class="nav nav-next" href="/quick-start/getting-an-image/" title="Getting an Image" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="/quick-start/" title="Basics" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 
@@ -604,3 +745,4 @@ tools that are recommended for most users.</p>
 
   </body>
 </html>
+
