@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>https://umo.ci/quick-start/</loc>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://umo.ci/quick-start/getting-an-image/</loc>
+  </url>
+  
+  <url>
+    <loc>https://umo.ci/advanced/workflow-optimisation/</loc>
   </url>
   
   <url>
@@ -38,8 +39,15 @@
   </url>
   
   <url>
-    <loc>https://umo.ci/categories/</loc>
-    <priority>0</priority>
+    <loc>https://umo.ci/quick-start/</loc>
+  </url>
+  
+  <url>
+    <loc>https://umo.ci/advanced/</loc>
+  </url>
+  
+  <url>
+    <loc>https://umo.ci/reference/</loc>
   </url>
   
   <url>
@@ -51,11 +59,12 @@
   </url>
   
   <url>
-    <loc>https://umo.ci/</loc>
+    <loc>https://umo.ci/categories/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://umo.ci/reference/</loc>
+    <loc>https://umo.ci/</loc>
   </url>
   
   <url>

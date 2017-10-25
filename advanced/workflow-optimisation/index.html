@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
 
-    <title>Workflow :: umoci</title>
+    <title>Workflow Optimistaion :: umoci</title>
     
     
     <link href="/css/nucleus.css?1508926413" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/quick-start/workflow/">
+  <body class="" data-url="/advanced/workflow-optimisation/">
     <nav id="sidebar" class="">
 
 
@@ -80,7 +80,7 @@
   
     
     <li data-nav-id="/quick-start/" title="Basics" class="dd-item 
-        parent
+        
         
         
         ">
@@ -123,7 +123,7 @@
  
   
     
-      <li data-nav-id="/quick-start/workflow/" title="Workflow" class="dd-item active">
+      <li data-nav-id="/quick-start/workflow/" title="Workflow" class="dd-item ">
         <a href="/quick-start/workflow/">
         Workflow
         
@@ -207,7 +207,7 @@
   
     
     <li data-nav-id="/advanced/" title="Advanced" class="dd-item 
-        
+        parent
         
         
         ">
@@ -231,7 +231,7 @@
  
   
     
-      <li data-nav-id="/advanced/workflow-optimisation/" title="Workflow Optimistaion" class="dd-item ">
+      <li data-nav-id="/advanced/workflow-optimisation/" title="Workflow Optimistaion" class="dd-item active">
         <a href="/advanced/workflow-optimisation/">
         Workflow Optimistaion
         
@@ -398,7 +398,7 @@
             
           
           
-            <a href='/'>Home</a> > <a href='/quick-start/'>Basics</a> > Workflow
+            <a href='/'>Home</a> > <a href='/advanced/'>Advanced</a> > Workflow Optimistaion
           
          
           
@@ -416,9 +416,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#unpack">Unpack</a></li>
-<li><a href="#repack">Repack</a></li>
-<li><a href="#configuration">Configuration</a></li>
+<li><a href="#refresh-bundle"><code>--refresh-bundle</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -434,7 +432,7 @@
         
         <div id="body-inner">
           
-            <h1>Workflow</h1>
+            <h1>Workflow Optimistaion</h1>
           
 
         
@@ -442,95 +440,103 @@
 
 
 
-<p>umoci&rsquo;s workflow is based around an unpack-repack cycle, with some separate
-configuration steps. Most users are going to be primarily using the unpack and
-repack subcommands for most uses of umoci.</p>
+<p>One of the first things that a user of umoci may notice is that certain
+operations can be quite expensive. Most notable, unpack and repack operations
+require either scanning through each layer archive of an image, or scanning
+through the filesystem. Both operations require quite a bit of disk IO, and can
+take a while. Fedora images are known to be quite large, and can take several
+seconds to operate on.</p>
 
-<h3 id="unpack">Unpack</h3>
-
-<p>Each image consists of a set of layers and a configuration that describes how
-the image should be used. <code>umoci unpack</code> allows you to take an image and
-extract its root filesystem and configuration into an <a href="https://github.com/opencontainers/runtime-spec">runtime
-bundle</a>. This bundle can be used by an OCI compliant container
-runtime to spawn a container, but also can be used directly by non-containers
-(as it is just a directory).</p>
-
-<pre><code class="language-text">% sudo umoci unpack --image opensuse:42.2 bundle
-% ls -l bundle
-total 720
--rw-r--r-- 1 root root   3247 Jul  3 17:58 config.json
-drwxr-xr-x 1 root root    128 Jan  1  1970 rootfs
--rw-r--r-- 1 root root 725320 Jul  3 17:58 sha256_8eac95fae2d9d0144607ffde0248b2eb46556318dcce7a9e4cc92edcd2100b67.mtree
--rw-r--r-- 1 root root    270 Jul  3 17:58 umoci.json
-% cat bundle/rootfs/etc/os-release
-NAME=&quot;openSUSE Leap&quot;
-VERSION=&quot;42.2&quot;
-ID=opensuse
-ID_LIKE=&quot;suse&quot;
-VERSION_ID=&quot;42.2&quot;
-PRETTY_NAME=&quot;openSUSE Leap 42.2&quot;
-ANSI_COLOR=&quot;0;32&quot;
-CPE_NAME=&quot;cpe:/o:opensuse:leap:42.2&quot;
-BUG_REPORT_URL=&quot;https://bugs.opensuse.org&quot;
-HOME_URL=&quot;https://www.opensuse.org/&quot;
+<pre><code class="language-text">% time umoci unpack --image fedora:26 bundle
+umoci unpack --image fedora:26 bundle  8.43s user 1.68s system 105% cpu 9.562 total
+% time umoci repack --image fedora:26-old bundle
+umoci repack --image fedora:26 bundle  3.62s user 0.43s system 115% cpu 3.520 total
+% find bundle/rootfs -type f -exec touch {} \;
+% time umoci repack --image fedora:26-new bundle
+umoci repack --image fedora:26-new bundle  32.03s user 4.50s system 112% cpu 32.559 total
 </code></pre>
 
-<p>You can spawn new containers with <a href="https://github.com/opencontainers/runc">runc</a>. If you make any changes to
-the root filesystem, you can create a new delta layer and add it to the image
-by <a href="#repack">repacking it</a>.</p>
+<p>While it is not currently possible to optimise or parallelise the above
+operations individually (due to the structure of the layer archives), it is
+possible to optimise your workflows in certain situations. These workflow tips
+effectively revolve around reducing the amount of extractions that are
+performed.</p>
 
-<pre><code class="language-text">% sudo runc run -b bundle ctr-name
-sh-4.3# grep NAME /etc/os-release
-NAME=&quot;openSUSE Leap&quot;
-sh-4.3# uname -n
-mrsdalloway
+<h3 id="refresh-bundle"><code>--refresh-bundle</code></h3>
+
+<div class="notices tip" ><p>Note that while this functionality <a
+href="https://github.com/openSUSE/umoci/pull/201">has been merged</a>, it has
+not yet been released in a version of umoci.</p>
+</div>
+
+
+<p>A very common workflow when building a series of layers in an image is that,
+since you want to place different files in different layers of the image, you
+have to do something like the following:</p>
+
+<pre><code class="language-text">% umoci unpack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_1 ./bundle_a
+% umoci repack --image image_build_XYZ:wip bundle_a
+% umoci unpack --image image_build_XYZ:wip bundle_b
+% ./some_build_process_2 ./bundle_b
+% umoci repack --image image_build_XYZ:wip bundle_b
+% umoci unpack --image image_build_XYZ:wip bundle_c
+% ./some_build_process_3 ./bundle_c
+% umoci repack --image image_build_XYZ:wip bundle_c
+% umoci tag --image image_build_XYZ:wip final
 </code></pre>
 
-<h3 id="repack">Repack</h3>
+<p>The above usage, while correct, is not very efficient. Each layer that is
+created requires us to to do an unpack of the entire <code>image_build_XYZ:wip</code>
+image before we can do anything. By noting that the root filesystem contained
+in <code>bundle_a</code> after we&rsquo;ve made our changes is effectively the same as the root
+filesystem that we extract into <code>bundle_b</code> (and since we already have
+<code>bundle_a</code> we don&rsquo;t have to extract it), we can conclude that using <code>bundle_a</code>
+is probably going to be more efficient. However, you cannot just do this the
+&ldquo;intuitive way&rdquo;:</p>
 
-<p>After making some changes to the root filesystem of your extracted image, you
-may want to create a new delta layer from the changes. Note that the way you
-modified the image does not matter, you can create a container using the
-extracted root filesystem or just modify it directly.</p>
-
-<p><code>umoci repack</code> will create a derived image based on the image originally
-extracted to create the runtime bundle. Even if the original image
-has been &ldquo;modified&rdquo;, <code>umoci repack</code> will still use the original. Note that in
-this invocation, <code>--image</code> refers to the new tag that will be used to reference
-the modified image (which may be the same tag used to extract the original
-image). <code>umoci repack</code> does not work across different images &ndash; both the source
-and destination must be in the same image (and the original blobs must not have
-been garbage collected).</p>
-
-<pre><code class="language-text">% echo &quot;some change&quot; &gt; bundle/rootfs/my_change
-% sudo umoci repack --image opensuse:new bundle
-% sudo umoci unpack --image opensuse:new bundle2
-% cat bundle2/rootfs/my_change
-some change
+<pre><code class="language-text">% umoci unpack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_1 ./bundle_a
+% umoci repack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_2 ./bundle_a
+% umoci repack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_3 ./bundle_a
+% umoci repack --image image_build_XYZ:wip bundle_a
+% umoci tag --image image_build_XYZ:wip final
 </code></pre>
 
-<p>Note that any changes to <code>bundle/config.json</code> <strong>will not</strong> change the image&rsquo;s
-configuration. You can change an image&rsquo;s configuration using <a href="#configuration">the dedicated
-subcommand</a>.</p>
+<p>Because the metadata stored in <code>bundle_a</code> includes information about what image
+the bundle was based on (this is used when creating the modified image
+metadata). Thus, the above usage will <em>not</em> result in multiple layers being
+created, and the usage is roughly identical to the following:</p>
 
-<h3 id="configuration">Configuration</h3>
-
-<p>In order to change the configuration of an image, <code>umoci config</code> can be used. A
-full description of what each configuration option means is beyond the scope of
-this document, but you can <a href="https://github.com/opencontainers/image-spec/blob/v1.0.0-rc4/config.md">read the spec for more
-information</a>.</p>
-
-<p>By default, <code>umoci config</code> will override the tag given with <code>--image</code> but you
-can force the change to create a new tag (leaving the original unchanged) with
-<code>--tag</code>.</p>
-
-<pre><code class="language-text">% umoci config --author=&quot;Aleksa Sarai &lt;asarai@suse.de&gt;&quot; --image opensuse
+<pre><code class="language-text">% umoci unpack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_1 ./bundle_a
+% ./some_build_process_2 ./bundle_a
+% ./some_build_process_3 ./bundle_a
+% umoci repack --image image_build_XYZ:wip bundle_a
+% umoci tag --image image_build_XYZ:wip final
 </code></pre>
 
-<p>Note that both <code>umoci config</code> and <code>umoci repack</code> include entries in the history
-of the image. You can change what the history entry contains for a particular
-operation by using the <code>--history.</code> set of flags (for both <code>umoci repack</code> and
-<code>umoci config</code>).</p>
+<p>Do not dispair however, there is a flag just for you! With <code>--refresh-bundle</code>
+it is possible to preform the above operations without needing to do any extra
+unpack operations.</p>
+
+<pre><code class="language-text">% umoci unpack --image image_build_XYZ:wip bundle_a
+% ./some_build_process_1 ./bundle_a
+% umoci repack --refresh-bundle --image image_build_XYZ:wip bundle_a
+% ./some_build_process_2 ./bundle_a
+% umoci repack --refresh-bundle --image image_build_XYZ:wip bundle_a
+% ./some_build_process_3 ./bundle_a
+% umoci repack --refresh-bundle --image image_build_XYZ:wip bundle_a
+% umoci tag --image image_build_XYZ:wip final
+</code></pre>
+
+<p>Internally, <code>--refresh-bundle</code> is modifying the few metadata files inside
+<code>bundle_a</code> so that future repack invocations modify the new image created by
+the previous repack operation rather than basing it on the original unpacked
+image. Therefore the cost of <code>--refresh-bundle</code> is constant, and is actually
+<strong>much</strong> smaller than the cost of doing additional unpack operations.</p>
 
 
 <footer class=" footline" >
@@ -567,141 +573,8 @@ operation by using the <code>--history.</code> set of flags (for both <code>umoc
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -759,6 +632,139 @@ operation by using the <code>--history.</code> set of flags (for both <code>umoc
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -769,10 +775,10 @@ operation by using the <code>--history.</code> set of flags (for both <code>umoc
 
 
         
-            <a class="nav nav-prev" href="/quick-start/getting-an-image/" title="Getting an Image"> <i class="fa fa-chevron-left"></i></a>
+            <a class="nav nav-prev" href="/advanced/" title="Advanced"> <i class="fa fa-chevron-left"></i></a>
         
         
-            <a class="nav nav-next" href="/quick-start/creating-an-image/" title="Creating an Image" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+            <a class="nav nav-next" href="/reference/" title="Reference" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
         
     </div>
 

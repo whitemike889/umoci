@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Advanced on umoci</title>
+    <link>https://umo.ci/advanced/</link>
+    <description>Recent content in Advanced on umoci</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://umo.ci/advanced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Workflow Optimistaion</title>
+      <link>https://umo.ci/advanced/workflow-optimisation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/advanced/workflow-optimisation/</guid>
+      <description>One of the first things that a user of umoci may notice is that certain operations can be quite expensive. Most notable, unpack and repack operations require either scanning through each layer archive of an image, or scanning through the filesystem. Both operations require quite a bit of disk IO, and can take a while. Fedora images are known to be quite large, and can take several seconds to operate on.</description>
+    </item>
+    
+  </channel>
+</rss>
