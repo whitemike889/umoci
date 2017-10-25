@@ -36,7 +36,7 @@ Unpack Each image consists of a set of layers and a configuration that describes
       
       <guid>https://umo.ci/quick-start/creating-an-image/</guid>
       <description>Creating a new image with umoci is fairly simple, and effectively involves creating an image &amp;ldquo;husk&amp;rdquo; which you can then operate on as though it was a normal image. New images contain no layers, and have a dummy configuration that should be replaced by a user.
-If you wish to create a new image layout (which contains nothing except the bare minimum to specify that the image is an OCI image), you can do so umoci init.</description>
+If you wish to create a new image layout (which contains nothing except the bare minimum to specify that the image is an OCI image), you can do so with umoci init.</description>
     </item>
     
     <item>

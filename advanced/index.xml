@@ -11,12 +11,12 @@
     
     
     <item>
-      <title>Workflow Optimistaion</title>
+      <title>Workflow Optimisation</title>
       <link>https://umo.ci/advanced/workflow-optimisation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://umo.ci/advanced/workflow-optimisation/</guid>
-      <description>One of the first things that a user of umoci may notice is that certain operations can be quite expensive. Most notable, unpack and repack operations require either scanning through each layer archive of an image, or scanning through the filesystem. Both operations require quite a bit of disk IO, and can take a while. Fedora images are known to be quite large, and can take several seconds to operate on.</description>
+      <description>One of the first things that a user of umoci may notice is that certain operations can be quite expensive. Notably unpack and repack operations require either scanning through each layer archive of an image, or scanning through the filesystem. Both operations require quite a bit of disk IO, and can take a while. Fedora images are known to be quite large, and can take several seconds to operate on.</description>
     </item>
     
   </channel>
