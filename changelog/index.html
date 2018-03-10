@@ -13,19 +13,19 @@
     <title> :: umoci</title>
     
     
-    <link href="/css/nucleus.css?1520608340" rel="stylesheet">
-    <link href="/css/font-awesome.min.css?1520608340" rel="stylesheet">
-    <link href="/css/hybrid.css?1520608340" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1520608340" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1520608340" rel="stylesheet">
-    <link href="/css/auto-complete.css?1520608340" rel="stylesheet">
-    <link href="/css/theme.css?1520608340" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1520608340" rel="stylesheet">
+    <link href="/css/nucleus.css?1520673257" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?1520673257" rel="stylesheet">
+    <link href="/css/hybrid.css?1520673257" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1520673257" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1520673257" rel="stylesheet">
+    <link href="/css/auto-complete.css?1520673257" rel="stylesheet">
+    <link href="/css/theme.css?1520673257" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1520673257" rel="stylesheet">
     
-      <link href="/css/theme-green.css?1520608340" rel="stylesheet">
+      <link href="/css/theme-green.css?1520673257" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1520608340"></script>
+    <script src="/js/jquery-2.x.min.js?1520673257"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1520608340"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1520608340"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1520673257"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1520673257"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/umo.ci\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1520608340"></script>
+<script type="text/javascript" src="/js/search.js?1520673257"></script>
 
     
   </div>
@@ -408,7 +408,8 @@
 <ul>
 <li><a href="#change-log">Change Log</a>
 <ul>
-<li><a href="#unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.3.1...HEAD">Unreleased</a></a>
+<li><a href="#unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.0...HEAD">Unreleased</a></a></li>
+<li><a href="#0-4-0-2018-03-10"><a href="https://github.com/openSUSE/umoci/compare/v0.3.1...v0.4.0">0.4.0</a> - 2018-03-10</a>
 <ul>
 <li><a href="#added">Added</a></li>
 <li><a href="#fixed">Fixed</a></li>
@@ -492,7 +493,9 @@
 <p>The format is based on <a href="http://keepachangelog.com/">Keep a Changelog</a>
 and this project adheres to <a href="http://semver.org/">Semantic Versioning</a>.</p>
 
-<h2 id="unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.3.1...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.0...HEAD">Unreleased</a></h2>
+
+<h2 id="0-4-0-2018-03-10"><a href="https://github.com/openSUSE/umoci/compare/v0.3.1...v0.4.0">0.4.0</a> - 2018-03-10</h2>
 
 <h3 id="added">Added</h3>
 
@@ -514,6 +517,12 @@ all children of a directory in the lower layer), though <code>umoci repack</code
 not currently have support for generating them. While this is technically a
 spec requirement, through testing we&rsquo;ve never encountered an actual user of
 these whiteouts. openSUSE/umoci#224 openSUSE/umoci#229</li>
+<li><code>umoci unpack</code> will now use some rootless tricks inside user namespaces for
+operations that are known to fail (such as <code>mknod(2)</code>) while other operations
+will be carried out as normal (such as <code>lchown(2)</code>). It should be noted that
+the <code>/proc/self/uid_map</code> checking we do can be tricked into not detecting
+user namespaces, but you would need to be trying to break it on purpose.
+openSUSE/umoci#171 openSUSE/umoci#230</li>
 </ul>
 
 <h3 id="fixed">Fixed</h3>
@@ -1095,20 +1104,20 @@ rootfs. openSUSE/umoci#27</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1520608340"></script>
-    <script src="/js/perfect-scrollbar.min.js?1520608340"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1520608340"></script>
-    <script src="/js/jquery.sticky-kit.min.js?1520608340"></script>
-    <script src="/js/featherlight.min.js?1520608340"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1520608340"></script>
-    <script src="/js/highlight.pack.js?1520608340"></script>
+    <script src="/js/clipboard.min.js?1520673257"></script>
+    <script src="/js/perfect-scrollbar.min.js?1520673257"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1520673257"></script>
+    <script src="/js/jquery.sticky-kit.min.js?1520673257"></script>
+    <script src="/js/featherlight.min.js?1520673257"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1520673257"></script>
+    <script src="/js/highlight.pack.js?1520673257"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1520608340"></script>
-    <script src="/js/learn.js?1520608340"></script>
-    <script src="/js/hugo-learn.js?1520608340"></script>
+    <script src="/js/modernizr.custom.71422.js?1520673257"></script>
+    <script src="/js/learn.js?1520673257"></script>
+    <script src="/js/hugo-learn.js?1520673257"></script>
 
-    <link href="/mermaid/mermaid.css?1520608340" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1520608340"></script>
+    <link href="/mermaid/mermaid.css?1520673257" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1520673257"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
