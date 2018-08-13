@@ -105,7 +105,7 @@ It should noted that the root filesystem created as an unprivileged user will li
       <guid>https://umo.ci/changelog/</guid>
       <description>Change Log All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
-Unreleased 0.4.0 - 2018-03-10 Added  umoci repack now supports --refresh-bundle which will update the OCI bundle&amp;rsquo;s metadata (mtree and umoci-specific manifests) after packing the image tag. This means that the bundle can be used as a base layer for future diffs without needing to unpack the image again.</description>
+Unreleased Added  The number of possible tags that are now valid with umoci subcommands has increased significantly due to an expansion in the specification of the format of the ref.name annotation. To quote the specification, the following is the EBNF of valid refname values.</description>
     </item>
     
     <item>
