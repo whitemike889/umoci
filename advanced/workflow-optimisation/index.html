@@ -13,19 +13,19 @@
     <title>Workflow Optimisation :: umoci</title>
     
     
-    <link href="/css/nucleus.css?1536636637" rel="stylesheet">
-    <link href="/css/font-awesome.min.css?1536636637" rel="stylesheet">
-    <link href="/css/hybrid.css?1536636637" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1536636637" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1536636637" rel="stylesheet">
-    <link href="/css/auto-complete.css?1536636637" rel="stylesheet">
-    <link href="/css/theme.css?1536636637" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1536636637" rel="stylesheet">
+    <link href="/css/nucleus.css?1537338402" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?1537338402" rel="stylesheet">
+    <link href="/css/hybrid.css?1537338402" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1537338402" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1537338402" rel="stylesheet">
+    <link href="/css/auto-complete.css?1537338402" rel="stylesheet">
+    <link href="/css/theme.css?1537338402" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1537338402" rel="stylesheet">
     
-      <link href="/css/theme-green.css?1536636637" rel="stylesheet">
+      <link href="/css/theme-green.css?1537338402" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1536636637"></script>
+    <script src="/js/jquery-2.x.min.js?1537338402"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1536636637"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1536636637"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1537338402"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1537338402"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/umo.ci\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1536636637"></script>
+<script type="text/javascript" src="/js/search.js?1537338402"></script>
 
     
   </div>
@@ -417,6 +417,7 @@
 <li>
 <ul>
 <li><a href="#refresh-bundle"><code>--refresh-bundle</code></a></li>
+<li><a href="#umoci-insert"><code>umoci insert</code></a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -531,6 +532,93 @@ unpack operations.</p>
 the previous repack operation rather than basing it on the original unpacked
 image. Therefore the cost of <code>--refresh-bundle</code> is constant, and is actually
 <strong>much</strong> smaller than the cost of doing additional unpack operations.</p>
+
+<h3 id="umoci-insert"><code>umoci insert</code></h3>
+
+<p>Sometimes all you want to do is to add some files to an image (or remove some
+files) and nothing else, and in those cases doing an <code>umoci unpack</code>-<code>umoci
+repack</code> cycle is also quite expensive. This is especially true when you
+consider that OCIv1 images are backed by <code>tar</code> archives &ndash; and the delta layer
+being generated is just going to be a <code>tar</code> archive of the files you are
+adding. The most basic usage of <code>umoci insert</code> is to just specify what files
+you want added, and what you want them to be called in the image (we don&rsquo;t have
+any magical <code>rsync</code> semantics &ndash; we just copy the root to whatever path you
+tell us).</p>
+
+<div class="notices info" ><p>Note that unlike most other <code>umoci</code> commands, <code>umoci insert</code> <strong>will overwrite
+the image you give it</strong>. As a counter-example, the <code>--image</code> flag of <code>umoci
+repack</code> refers to the <em>target</em> image not the <em>source</em> image (the source image
+is already known, because <code>umoci unpack</code> saves that information).</p>
+
+<p>This behaviour may change in the future, but it&rsquo;s not clear what would be an
+obvious interface for this change (older versions of <code>umoci</code> had separate
+<code>--src</code> and <code>--dst</code> flags, but they were unweildly and so were removed in
+favour of the <code>--image</code> style).</p>
+
+<p>Also note that each <code>umoci insert</code> creates a separate layer.</p>
+</div>
+
+
+<pre><code class="language-text">% umoci insert --image myimg:foo mybinary /usr/bin/release-binary
+% umoci insert --image myimg:foo myconfigdir /etc/binary.d
+</code></pre>
+
+<p>If the target file already exists in previous layers, the new layer will
+overwrite any older versions of the files inserted (when extracted).</p>
+
+<p>You can also remove a file (or directory) from an image by using the
+<code>--whiteout</code> option, which creates a new layer with a &ldquo;whiteout&rdquo; entry for the
+path you give it. If the file doesn&rsquo;t already exist, the behaviour depends on
+the extraction tool used &ndash; <code>umoci insert</code> will ignore whiteouts for
+non-existent files when extracting.</p>
+
+<div class="notices warning" ><p><strong>Do not use this to remove secrets from an image.</strong> Since <code>umoci insert</code>
+operates by creating a new layer, older layers will still contain a copy of the
+secret you are trying to remove. If you want to avoid things from being
+included in an image in the first place, take a look at <code>umoci repack
+--mask-path</code> (which causes changes to the given paths to not be included in the
+new layer) or <code>umoci config --config.volumes</code> (which is automatically treated
+as a masked path by <code>umoci repack</code>).</p>
+</div>
+
+
+<pre><code class="language-text">% umoci insert --whiteout /usr/bin/old-binary
+% umoci insert --whiteout /etc/old-config.d
+</code></pre>
+
+<p>Finally, there is one more important thing to know about <code>umoci insert</code> &ndash; how
+directory insertion is handled. By default, <code>umoci insert</code> just creates a new
+layer with the contents of the directory. When unpacked, this results in any
+existing contents in that directory (from older layers) to be merged with the
+new layer&rsquo;s contents. You can imagine this as though you extracted your new
+directory on top of the previous layers&rsquo; cumulative directory state.</p>
+
+<p>But what if you want to entire replace the contents of a directory? That&rsquo;s the
+reason why we have <code>--opaque</code> &ndash; it allows you to effectively blank out any
+pre-existing contents of the directory and replace it entirely with the new
+directory. If the target was not a directory in previous layers, or the source
+is not a directory, then the behaviour will depend on the tool used for
+extraction &ndash; <code>umoci unpack</code> will just ignore the meaningless opaque whiteout
+entry.</p>
+
+<pre><code class="language-text">% umoci insert --opaque myetcdir /etc
+</code></pre>
+
+<p>The same caveat about <code>umoci insert --whiteout</code> applies here, as older layers
+will contain the files that were removed by the opaque whiteout.</p>
+
+<div class="notices info" ><p>It should be noted that this is the only way that umoci will currently create
+an &ldquo;opaque whiteout&rdquo;. This means that if you need to replace an entire
+directory wholesale, the layer created by <code>umoci insert --opaque</code> is far more
+efficient in the resulting layer than the <code>umoci unpack</code>-<code>umoci repack</code> cycle
+(even if you ignore the CPU-time benefits).</p>
+
+<p>Though currently <code>umoci insert</code> only allows one operation per layer, which is
+mostly a UX restriction. This may change in the future, and so <code>umoci insert</code>
+will be <em>far</em> more generally usable and efficient in terms of number of layers
+generated.</p>
+</div>
+
 
 
 <footer class=" footline" >
@@ -781,20 +869,20 @@ image. Therefore the cost of <code>--refresh-bundle</code> is constant, and is a
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1536636637"></script>
-    <script src="/js/perfect-scrollbar.min.js?1536636637"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1536636637"></script>
-    <script src="/js/jquery.sticky-kit.min.js?1536636637"></script>
-    <script src="/js/featherlight.min.js?1536636637"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1536636637"></script>
-    <script src="/js/highlight.pack.js?1536636637"></script>
+    <script src="/js/clipboard.min.js?1537338402"></script>
+    <script src="/js/perfect-scrollbar.min.js?1537338402"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1537338402"></script>
+    <script src="/js/jquery.sticky-kit.min.js?1537338402"></script>
+    <script src="/js/featherlight.min.js?1537338402"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1537338402"></script>
+    <script src="/js/highlight.pack.js?1537338402"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1536636637"></script>
-    <script src="/js/learn.js?1536636637"></script>
-    <script src="/js/hugo-learn.js?1536636637"></script>
+    <script src="/js/modernizr.custom.71422.js?1537338402"></script>
+    <script src="/js/learn.js?1537338402"></script>
+    <script src="/js/hugo-learn.js?1537338402"></script>
 
-    <link href="/mermaid/mermaid.css?1536636637" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1536636637"></script>
+    <link href="/mermaid/mermaid.css?1537338402" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1537338402"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
