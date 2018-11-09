@@ -105,7 +105,7 @@ It should noted that the root filesystem created as an unprivileged user will li
       <guid>https://umo.ci/changelog/</guid>
       <description>Change Log All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
-Unreleased 0.4.2 - 2018-09-11 Added  umoci now has an exposed Go API. At the moment it&amp;rsquo;s unclear whether it will be changed significantly, but at the least now users can use umoci-as-a-library in a fairly sane way. openSUSE/umoci#245 Added umoci unpack --keep-dirlinks (in the same vein as rsync&amp;rsquo;s flag with the same name) which allows layers that contain entries which have a symlink as a path component.</description>
+Unreleased Added  All umoci commands that had --history.* options can now decide to omit a history entry with --no-history. Note that while this is supported for commands that create layers (umoci repack, umoci insert, and umoci raw add-layer) it is not recommended to use it for those commands since it can cause other tools to become confused when inspecting the image history.</description>
     </item>
     
     <item>
