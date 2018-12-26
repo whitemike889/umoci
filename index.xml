@@ -136,7 +136,7 @@ Security Issues If you are reporting a security issue, do not create an issue or
       <guid>https://umo.ci/governance/</guid>
       <description>Governance Model umoci currently operates under a BDFL (Benevolent Dictator for Life) model. All final decisions are made by the project owner (who is currently Aleksa Sarai).
 When more maintainers join the project, the governance model will likely change to some kind of consensus model &amp;ndash; but until such a change to the governance model is made (and accepted by the BDFL), the BDFL will remain unchanged.
-As an openSUSE project there is an &amp;ldquo;escape hatch&amp;rdquo; governance in the form of the [openSUSE Board][openSUSE-board].</description>
+As an openSUSE project, there is an &amp;ldquo;escape hatch&amp;rdquo; governance in the form of the openSUSE Board.</description>
     </item>
     
   </channel>
