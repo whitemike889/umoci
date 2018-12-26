@@ -105,7 +105,17 @@ It should noted that the root filesystem created as an unprivileged user will li
       <guid>https://umo.ci/changelog/</guid>
       <description>Change Log All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog and this project adheres to Semantic Versioning.
-Unreleased Added  All umoci commands that had --history.* options can now decide to omit a history entry with --no-history. Note that while this is supported for commands that create layers (umoci repack, umoci insert, and umoci raw add-layer) it is not recommended to use it for those commands since it can cause other tools to become confused when inspecting the image history.</description>
+Unreleased [v0.4.3] - 2018-11-11 Added  All umoci commands that had --history.* options can now decide to omit a history entry with --no-history. Note that while this is supported for commands that create layers (umoci repack, umoci insert, and umoci raw add-layer) it is not recommended to use it for those commands since it can cause other tools to become confused when inspecting the image history.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://umo.ci/code-of-conduct/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/code-of-conduct/</guid>
+      <description>Code of Conduct As umoci is part of the openSUSE project, we adopt the openSUSE Code of Conduct. This is enshrined in the openSUSE Guiding Principles, in particular:
+ [We value] respect for other persons and their contributions, for other opinions and beliefs. We listen to arguments and address problems in a constructive and open way. We believe that a diverse community based on mutual respect is the base for a creative and productive environment enabling the project to be truly successful.</description>
     </item>
     
     <item>
@@ -116,6 +126,17 @@ Unreleased Added  All umoci commands that had --history.* options can now decide
       <guid>https://umo.ci/contributing/</guid>
       <description>Contribution Guidelines If you&amp;rsquo;re reading this, you&amp;rsquo;re likely interested in contributing to this project. That&amp;rsquo;s great! The intention of this document is to describe the basic requirements and rules-of-thumb for contributions.
 Security Issues If you are reporting a security issue, do not create an issue or file a pull request on GitHub. Instead, disclose the issue responsibly by sending an email to asarai@suse.de. If you feel it is necessary you may also encrypt your email with Pretty Good Privacy (PGP) using the PGP key 5F36 C6C6 1B54 6012 4A75 F5A6 9E18 AA26 7DDB 8DB4.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://umo.ci/governance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://umo.ci/governance/</guid>
+      <description>Governance Model umoci currently operates under a BDFL (Benevolent Dictator for Life) model. All final decisions are made by the project owner (who is currently Aleksa Sarai).
+When more maintainers join the project, the governance model will likely change to some kind of consensus model &amp;ndash; but until such a change to the governance model is made (and accepted by the BDFL), the BDFL will remain unchanged.
+As an openSUSE project there is an &amp;ldquo;escape hatch&amp;rdquo; governance in the form of the [openSUSE Board][openSUSE-board].</description>
     </item>
     
   </channel>

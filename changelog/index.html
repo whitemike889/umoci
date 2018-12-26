@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.52-DEV" />
+    <meta name="generator" content="Hugo 0.53" />
     <meta name="description" content="Documentation for umoci -- a tool for modifying OCI images.">
 <meta name="author" content="Aleksa Sarai">
 
@@ -13,19 +13,19 @@
     <title> :: umoci</title>
     
     
-    <link href="/css/nucleus.css?1541738603" rel="stylesheet">
-    <link href="/css/font-awesome.min.css?1541738603" rel="stylesheet">
-    <link href="/css/hybrid.css?1541738603" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1541738603" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1541738603" rel="stylesheet">
-    <link href="/css/auto-complete.css?1541738603" rel="stylesheet">
-    <link href="/css/theme.css?1541738603" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1541738603" rel="stylesheet">
+    <link href="/css/nucleus.css?1545842918" rel="stylesheet">
+    <link href="/css/font-awesome.min.css?1545842918" rel="stylesheet">
+    <link href="/css/hybrid.css?1545842918" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1545842918" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1545842918" rel="stylesheet">
+    <link href="/css/auto-complete.css?1545842918" rel="stylesheet">
+    <link href="/css/theme.css?1545842918" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1545842918" rel="stylesheet">
     
-      <link href="/css/theme-green.css?1541738603" rel="stylesheet">
+      <link href="/css/theme-green.css?1545842918" rel="stylesheet">
     
 
-    <script src="/js/jquery-2.x.min.js?1541738603"></script>
+    <script src="/js/jquery-2.x.min.js?1545842918"></script>
     
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{ 
@@ -56,14 +56,14 @@
     <span data-search-clear=""><i class="fa fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1541738603"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1541738603"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1545842918"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1545842918"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/umo.ci\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1541738603"></script>
+<script type="text/javascript" src="/js/search.js?1545842918"></script>
 
     
   </div>
@@ -408,7 +408,8 @@
 <ul>
 <li><a href="#change-log">Change Log</a>
 <ul>
-<li><a href="#unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.2...HEAD">Unreleased</a></a></li>
+<li><a href="#unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.3...HEAD">Unreleased</a></a></li>
+<li><a href="#v0-4-3-2018-11-11">[v0.4.3] - 2018-11-11</a></li>
 <li><a href="#added">Added</a></li>
 <li><a href="#0-4-2-2018-09-11"><a href="https://github.com/openSUSE/umoci/compare/v0.4.1...v0.4.2">0.4.2</a> - 2018-09-11</a></li>
 <li><a href="#added-1">Added</a></li>
@@ -502,7 +503,9 @@
 <p>The format is based on <a href="http://keepachangelog.com/">Keep a Changelog</a>
 and this project adheres to <a href="http://semver.org/">Semantic Versioning</a>.</p>
 
-<h2 id="unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.2...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/openSUSE/umoci/compare/v0.4.3...HEAD">Unreleased</a></h2>
+
+<h2 id="v0-4-3-2018-11-11">[v0.4.3] - 2018-11-11</h2>
 
 <h2 id="added">Added</h2>
 
@@ -514,6 +517,9 @@ add-layer</code>) it is not recommended to use it for those commands since it ca
 cause other tools to become confused when inspecting the image history. The
 primary usecase is to allow <code>umoci config --no-history</code> to leave no traces in
 the history. See SUSE/kiwi#871. openSUSE/umoci#270</li>
+<li><code>umoci insert</code> now has a <code>--tag</code> option that allows you to non-destructively
+insert files into an image. The semantics match <code>umoci config --tag</code>.
+openSUSE/umoci#273</li>
 </ul>
 
 <h2 id="0-4-2-2018-09-11"><a href="https://github.com/openSUSE/umoci/compare/v0.4.1...v0.4.2">0.4.2</a> - 2018-09-11</h2>
@@ -1203,20 +1209,20 @@ rootfs. openSUSE/umoci#27</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1541738603"></script>
-    <script src="/js/perfect-scrollbar.min.js?1541738603"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1541738603"></script>
-    <script src="/js/jquery.sticky-kit.min.js?1541738603"></script>
-    <script src="/js/featherlight.min.js?1541738603"></script>
-    <script src="/js/html5shiv-printshiv.min.js?1541738603"></script>
-    <script src="/js/highlight.pack.js?1541738603"></script>
+    <script src="/js/clipboard.min.js?1545842918"></script>
+    <script src="/js/perfect-scrollbar.min.js?1545842918"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1545842918"></script>
+    <script src="/js/jquery.sticky-kit.min.js?1545842918"></script>
+    <script src="/js/featherlight.min.js?1545842918"></script>
+    <script src="/js/html5shiv-printshiv.min.js?1545842918"></script>
+    <script src="/js/highlight.pack.js?1545842918"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom.71422.js?1541738603"></script>
-    <script src="/js/learn.js?1541738603"></script>
-    <script src="/js/hugo-learn.js?1541738603"></script>
+    <script src="/js/modernizr.custom.71422.js?1545842918"></script>
+    <script src="/js/learn.js?1545842918"></script>
+    <script src="/js/hugo-learn.js?1545842918"></script>
 
-    <link href="/mermaid/mermaid.css?1541738603" type="text/css" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1541738603"></script>
+    <link href="/mermaid/mermaid.css?1545842918" type="text/css" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1545842918"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/images/favicon.png" type="image/x-icon" />
 
-    <title>Home :: umoci</title>
+    <title> :: umoci</title>
     
     
     <link href="/css/nucleus.css?1545842918" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/code-of-conduct/">
     <nav id="sidebar" class="">
 
 
@@ -373,103 +373,100 @@
         <div id="overlay"></div>
         <div class="padding highlightable sticky-parent">
               
+              <div class="sticky-spacer">
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fa fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fa fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Home</a> > 
+          
+         
+          
+           
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1></h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
-
- 
 
 
-<p><a href="/"><img src="/umoci-black.png" alt="umoci" /></a></p>
 
-<p>Made with &#10084; by <a href="https://www.opensuse.org/">openSUSE</a>.</p>
+<h2 id="code-of-conduct">Code of Conduct</h2>
 
-<p>umoci is a free software tool for manipulating and interacting with container
-images in the standardised <a href="https://www.opencontainers.org/">Open Container Initiative&rsquo;s</a> image format. It
-provides one of the most flexible image management toolsets, requiring neither
-a daemon nor any particular filesystem setup. It is already used in a variety
-of different projects and by several companies.</p>
+<p>As umoci is part of the openSUSE project, we adopt the openSUSE Code of
+Conduct. This is enshrined in the <a href="https://en.opensuse.org/openSUSE:Guiding_principles">openSUSE Guiding
+Principles</a>, in particular:</p>
 
-<h3 id="features">Features</h3>
+<blockquote>
+<p>[We value] respect for other persons and their contributions, for other
+opinions and beliefs. We listen to arguments and address problems in a
+constructive and open way. We believe that a diverse community based on
+mutual respect is the base for a creative and productive environment enabling
+the project to be truly successful. We don&rsquo;t tolerate social discrimination
+and aim at creating an environment where people feel accepted and safe from
+offense.</p>
+</blockquote>
 
-<p>umoci&rsquo;s feature set is intentionally restricted, as it has well-defined goals.</p>
+<p>In case of an violation of these principles (or any reasonable interpretation
+of the above principles), you may report it <a href="/MAINTAINERS">to the maintainers</a>.
+If the maintainers are unable to handle this situation (or one of the
+maintainers is responsible for a code of conduct violation), then the issue can
+be escalated to the <a href="https://en.opensuse.org/openSUSE:Board">openSUSE Board</a> who will be able to deal
+with the violation.</p>
 
-<ul>
-<li>Extraction of images produces a standardised <a href="https://github.com/opencontainers/runtime-spec">OCI runtime
-bundle</a>, which is immediately usable by <a href="https://github.com/opencontainers/runc">runc</a> or <a href="https://github.com/opencontainers/runtime-spec/blob/v1.0.0/implementations.md">any
-other OCI-compliant runtime</a>. However, these bundles are also
-usable without the need for containers (which means that builders can mutate
-the root filesystem in whatever fashion they choose).</li>
-<li>Generates delta layers without requiring filesystem-specific features.
-Rather, it makes use of existing <a href="https://www.freebsd.org/cgi/man.cgi?mtree(8)">mtree</a> manifest tooling to
-compute the deltas of paths in the root filesystem.</li>
-<li>Supports <a href="https://rootlesscontaine.rs/">rootless containers</a> natively, both by allowing for
-extraction of layers that would normally require privileges and by generating
-runtime configurations that <code>runc</code> can use as an unprivileged user.</li>
-<li>Internal libraries are entirely built around a generic content addressable
-store interface, allowing for code reuse by other projects and the
-possibility for new backends.</li>
-</ul>
+<p>Both the maintainers and the Board assume all necessary rights to handle
+violations in a reasonable and proportionate manner. However, violations that
+happen outside of the openSUSE project and community <em>may</em> be decided to be
+outside the jurisdiction of this Code of Conduct (depending on the
+circumstances &ndash; and, as above, the Board can be escalated to in case of
+disagreement).</p>
 
-<h3 id="install">Install</h3>
 
-<p>Pre-built binaries can be downloaded from <a href="https://github.com/openSUSE/umoci/releases">umoci&rsquo;s releases page</a>. As
-umoci&rsquo;s builds are reproducible, a cryptographic checksum file is included in
-the release assets. All of the assets are also signed with a <a href="/umoci.keyring">release
-key</a>.</p>
-
-<pre><code class="language-text">pub   rsa4096 2016-06-21 [SC] [expires: 2031-06-18]
-      5F36C6C61B5460124A75F5A69E18AA267DDB8DB4
-uid           [ultimate] Aleksa Sarai &lt;asarai@suse.com&gt;
-uid           [ultimate] Aleksa Sarai &lt;asarai@suse.de&gt;
-sub   rsa4096 2016-06-21 [E] [expires: 2031-06-18]
-</code></pre>
-
-<p>umoci is also available from several distribution&rsquo;s repositories:</p>
-
-<ul>
-<li><a href="https://software.opensuse.org/package/umoci">openSUSE</a></li>
-<li><a href="https://packages.gentoo.org/packages/app-emulation/umoci">Gentoo</a></li>
-<li><a href="https://aur.archlinux.org/packages/umoci/">Arch Linux (AUR)</a></li>
-</ul>
-
-<p>To build umoci from the <a href="https://github.com/openSUSE/umoci">source code</a>, a simple <code>make &amp;&amp; make install</code>
-should work on most machines. The <a href="/changelog">changelog</a> is also available.</p>
-
-<h3 id="community">Community</h3>
-
-<p>umoci is an openSUSE project, and thus is part of the <a href="https://www.opensuse.org/">openSUSE
-community</a>. In addition, we have a <a href="/code-of-conduct">Code of Conduct</a> as
-well as <a href="/governance">a slightly-modified BDFL governance model</a>.</p>
-
-<h3 id="license">License</h3>
-
-<p>umoci is licensed under the terms of the Apache 2.0 license.</p>
-
-<pre><code class="language-text">umoci: Umoci Modifies Open Containers' Images
-Copyright (C) 2016, 2017, 2018 SUSE LLC.
-
-Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-</code></pre>
+<footer class=" footline" >
 	
-  
+</footer>
+
+
         
         </div> 
       </div>
@@ -727,3 +724,4 @@ limitations under the License.
 
   </body>
 </html>
+
